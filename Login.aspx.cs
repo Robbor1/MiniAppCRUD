@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace MiniAppCRUD
 {
@@ -12,6 +10,31 @@ namespace MiniAppCRUD
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            string conectar = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+            SqlConnection sqlConectar = new SqlConnection(conectar);
+            SqlCommand cmd = new SqlCommand("SP_ValidarUsuario", sqlConectar);
+            {
+                 cmd.CommandType = CommandType.StoredProcedure;
+            };
+            cmd.Connection.Open();
+            cmd.Parameters.Add("@Usuario", SqlDbType.VarChar,150).Value = txtUsername.Text;
+            cmd.Parameters.Add("@Contraseña", SqlDbType.VarChar, 150).Value = txtPassword.Text;
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if(dr.Read())
+            {
+                Response.Redirect("Default.aspx");
+            }
+            else
+            {
+                Response.Write("<script>alert('Usuario o contraseña incorrectos');</script>");
+            }
+            cmd.Connection.Close();
         }
     }
 }
