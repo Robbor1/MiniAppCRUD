@@ -36,7 +36,6 @@ namespace MiniAppCRUD
             gvCategorias.DataBind();
             sqlConectar.Close();
 
-
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -56,7 +55,6 @@ namespace MiniAppCRUD
                 CargarTabla();
                 txtCategoria.Text = " ";
             }
-
         }
 
         protected void gvCategorias_RowCommand(object sender, GridViewCommandEventArgs e)

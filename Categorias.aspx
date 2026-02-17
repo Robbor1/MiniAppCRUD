@@ -8,7 +8,7 @@
             <asp:Label ID="lblCategoria" runat="server" Text="Label">Categoria: </asp:Label>
             <asp:TextBox ID="txtCategoria" runat="server" placeholder="Ej: maquinaria"></asp:TextBox>
 
-            <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click" />
+            <asp:Button ID="btnGuardar" runat="server" Text="Añadir" OnClick="btnGuardar_Click" />
 
             <asp:GridView ID="gvCategorias" runat="server" AutoGenerateColumns="false" OnRowCommand="gvCategorias_RowCommand">
                 <Columns>

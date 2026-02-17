@@ -101,6 +101,7 @@
   <ItemGroup>
     <Content Include="Categorias.aspx" />
     <Content Include="EditarCategoria.aspx" />
+    <Content Include="EditarProducto.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -200,6 +201,13 @@
     </Compile>
     <Compile Include="EditarCategoria.aspx.designer.cs">
       <DependentUpon>EditarCategoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditarProducto.aspx.cs">
+      <DependentUpon>EditarProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditarProducto.aspx.designer.cs">
+      <DependentUpon>EditarProducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Productos.aspx.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
