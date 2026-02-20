@@ -58,38 +58,9 @@ namespace MiniAppCRUD
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtNombre.Text) || 
-                string.IsNullOrWhiteSpace(txtPrecio.Text) || 
-                string.IsNullOrWhiteSpace(txtStock.Text) || 
-                string.IsNullOrEmpty(dropdownCategoria.Text))
-            {
-                Response.Write("<script>alert('No se pueden guardar datos vacíos.');</script>");
-            }
-            else if (dropdownCategoria.SelectedIndex == 0)
-            {
-                Response.Write("<script>alert('Selecciona una categoría.');</script>");
-            }
-            else
-            {
-                SqlCommand cmd = new SqlCommand("SP_InsertarProducto", sqlConectar);
-                cmd.CommandType = CommandType.StoredProcedure;
-                sqlConectar.Open();
-                cmd.Parameters.Add("@Nombre", SqlDbType.VarChar, 100).Value = txtNombre.Text;
-                cmd.Parameters.Add("@Precio", SqlDbType.Decimal).Value = Convert.ToDecimal(txtPrecio.Text);
-                cmd.Parameters.Add("@Stock", SqlDbType.Int).Value = Convert.ToInt32(txtStock.Text);
-                cmd.Parameters.Add("@IdCategoria", SqlDbType.Int).Value = Convert.ToInt32(dropdownCategoria.SelectedValue);
-                cmd.ExecuteNonQuery();
-                sqlConectar.Close();
-                CargarTabla();
+        { 
+            Response.Redirect("EditarProducto.aspx?op=C");  
 
-                txtNombre.Text = " ";
-                txtPrecio.Text = " ";
-                txtStock.Text = " ";
-                dropdownCategoria.TabIndex = 0;
-
-            }
-            
         }
 
         protected void gvProductos_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -116,9 +87,9 @@ namespace MiniAppCRUD
             }
         }
 
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
 
-
-
-
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -18,11 +19,24 @@ namespace MiniAppCRUD
         {
             if (!Page.IsPostBack)
             {
-                txtId.Enabled = false;
                 CargarCategorias();
+                txtId.Enabled = false;
 
-                if (Request.QueryString["id"] != null)
+                if (Request.QueryString["op"] == "C")
                 {
+                    btnActualizar.Visible = false;
+                    btnAñadir.Visible = true;
+                    cbActivo.Enabled = false;
+                    fchRegistro.Enabled = false;
+                    fchRegistro.SelectedDate = DateTime.Now;
+                }
+                else if (Request.QueryString["id"] != null)
+                {
+                    btnActualizar.Visible = true;
+                    btnAñadir.Visible = false;
+                    cbActivo.Enabled = true;
+                    fchRegistro.Enabled = true;
+
                     int getId = Convert.ToInt32(Request.QueryString["id"]);
                     CargarProductos(getId);
                 }
@@ -93,22 +107,63 @@ namespace MiniAppCRUD
             {
                 int getId = Convert.ToInt32(Request.QueryString["id"]);
 
+                using (SqlCommand cmd = new SqlCommand("SP_ActualizarProducto", sqlConectar))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                SqlCommand cmd = new SqlCommand("SP_ActualizarProducto", sqlConectar);
-                cmd.CommandType = CommandType.StoredProcedure;
-                sqlConectar.Open();
-                cmd.Parameters.Add("@IdProducto", getId);
-                cmd.Parameters.Add("@Nombre", SqlDbType.VarChar, 150).Value = txtNombre.Text;
-                cmd.Parameters.Add("@Precio", SqlDbType.Decimal).Value = Convert.ToDecimal(txtPrecio.Text);
-                cmd.Parameters.Add("@Stock", SqlDbType.Int).Value = Convert.ToInt32(txtStock.Text);
-                cmd.Parameters.Add("@IdCategoria", SqlDbType.Int).Value = Convert.ToInt32(dropdownCategoria.Text);
-                cmd.Parameters.Add("@FechaRegistro", SqlDbType.DateTime).Value = fchRegistro.SelectedDate;
-                cmd.Parameters.Add("@Activo", SqlDbType.Bit).Value = cbActivo.Checked;
-                cmd.ExecuteNonQuery();
-                sqlConectar.Close();
+                    cmd.Parameters.Add("@IdProducto", SqlDbType.Int).Value = getId;
+                    cmd.Parameters.Add("@Nombre", SqlDbType.NVarChar, 150).Value = txtNombre.Text;
+                    cmd.Parameters.Add("@Precio", SqlDbType.Decimal).Value = Convert.ToDecimal(txtPrecio.Text);
+                    cmd.Parameters.Add("@Stock", SqlDbType.Int).Value = Convert.ToInt32(txtStock.Text);
+                    cmd.Parameters.Add("@IdCategoria", SqlDbType.Int).Value = Convert.ToInt32(dropdownCategoria.SelectedValue);
+                    cmd.Parameters.Add("@FechaRegistro", SqlDbType.DateTime).Value = fchRegistro.SelectedDate;
+                    cmd.Parameters.Add("@Activo", SqlDbType.Bit).Value = cbActivo.Checked;
+
+                    sqlConectar.Open();
+                    cmd.ExecuteNonQuery();
+                }
 
                 Response.Redirect("Productos.aspx");
             }
+        }
+
+        protected void btnAñadir_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
+                string.IsNullOrWhiteSpace(txtPrecio.Text) ||
+                string.IsNullOrWhiteSpace(txtStock.Text))
+            {
+                Response.Write("<script>alert('No se pueden guardar datos vacíos.');</script>");
+            }
+            else if (dropdownCategoria.SelectedIndex == 0)
+            {
+                Response.Write("<script>alert('Selecciona una categoría.');</script>");
+                return;
+            }
+            else
+            {
+                SqlCommand cmd = new SqlCommand("SP_InsertarProducto", sqlConectar);
+                cmd.CommandType = CommandType.StoredProcedure;
+                sqlConectar.Open();
+                cmd.Parameters.Add("@Nombre", SqlDbType.VarChar, 100).Value = txtNombre.Text;
+                cmd.Parameters.Add("@Precio", SqlDbType.Decimal).Value = Convert.ToDecimal(txtPrecio.Text);
+                cmd.Parameters.Add("@Stock", SqlDbType.Int).Value = Convert.ToInt32(txtStock.Text);
+                cmd.Parameters.Add("@IdCategoria", SqlDbType.Int).Value = Convert.ToInt32(dropdownCategoria.SelectedValue);
+                cmd.ExecuteNonQuery();
+                sqlConectar.Close();
+
+                txtNombre.Text = "";
+                txtPrecio.Text = "";
+                txtStock.Text = "";
+                dropdownCategoria.SelectedIndex = 0;
+
+                Response.Redirect("Productos.aspx");
+            }
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Productos.aspx");
         }
     }
 }

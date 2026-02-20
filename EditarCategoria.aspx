@@ -19,7 +19,9 @@
             <asp:Label ID="lblActivo" runat="server" Text="Activo: "></asp:Label>
             <asp:CheckBox ID="cbActivo" runat="server" />
 
+            <asp:Button ID="btnAñadir" runat="server" Text="Añadir" OnClick="btnAñadir_Click" />
             <asp:Button ID="btnActualizar" runat="server" Text="Actualizar" OnClick="btnActualizar_Click" />
+            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />
 
         </div>
     </form>

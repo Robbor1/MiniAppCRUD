@@ -17,6 +17,7 @@
             <asp:Label ID="Label4" runat="server" Text="Categoria: "></asp:Label>
             <asp:DropDownList ID="dropdownCategoria" runat="server"></asp:DropDownList>
 
+            <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
             <asp:Button ID="btnGuardar" runat="server" Text="Añadir" OnClick="btnGuardar_Click" />
 
 

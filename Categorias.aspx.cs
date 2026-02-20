@@ -40,21 +40,9 @@ namespace MiniAppCRUD
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtCategoria.Text))
-            {
-                Response.Write("<script>alert('No se pueden guardar datos vacíos.');</script>");
-            }
-            else
-            {
-                SqlCommand cmd = new SqlCommand("SP_InsertarCategoria", sqlConectar);
-                cmd.CommandType = CommandType.StoredProcedure;
-                sqlConectar.Open();
-                cmd.Parameters.Add("@Nombre", SqlDbType.VarChar, 100).Value = txtCategoria.Text;
-                cmd.ExecuteNonQuery();
-                sqlConectar.Close();
-                CargarTabla();
-                txtCategoria.Text = " ";
-            }
+
+            Response.Redirect("EditarCategoria.aspx?op=C");
+
         }
 
         protected void gvCategorias_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -81,5 +69,9 @@ namespace MiniAppCRUD
             }
         }
 
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

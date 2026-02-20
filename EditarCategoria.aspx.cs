@@ -16,16 +16,29 @@ namespace MiniAppCRUD
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (!IsPostBack)
             {
-                if (Request.QueryString["id"]!=null)
+                // MODO CREAR
+                if (Request.QueryString["op"] == "C")
                 {
+                    txtId.Enabled = false;
+                    cbActivo.Enabled = false;
+                    btnActualizar.Visible = false;
+                    btnAñadir.Visible = true;
+                }
+
+                // MODO EDITAR
+                else if (Request.QueryString["id"] != null)
+                {
+                    txtId.Enabled = false;
+                    cbActivo.Enabled = true;
+                    btnActualizar.Visible = true;
+                    btnAñadir.Visible = false;
+
                     int getId = Convert.ToInt32(Request.QueryString["id"]);
                     CargarCategoria(getId);
                 }
             }
-
-            txtId.Enabled = false;
 
         }
 
@@ -58,18 +71,46 @@ namespace MiniAppCRUD
             {
                 int getId = Convert.ToInt32(Request.QueryString["id"]);
 
+                using (SqlCommand cmd = new SqlCommand("SP_ActualizarCategoria", sqlConectar))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@IdCategoria", SqlDbType.Int).Value = getId;
+                    cmd.Parameters.Add("@Nombre", SqlDbType.VarChar, 100).Value = txtCategoria.Text;
+                    cmd.Parameters.Add("@Activo", SqlDbType.Bit).Value = cbActivo.Checked;
 
-                SqlCommand cmd = new SqlCommand("SP_ActualizarCategoria", sqlConectar);
-                cmd.CommandType = CommandType.StoredProcedure;
-                sqlConectar.Open();
-                cmd.Parameters.Add("@IdCategoria", getId);
-                cmd.Parameters.Add("@Nombre", SqlDbType.VarChar, 100).Value = txtCategoria.Text;
-                cmd.Parameters.Add("@Activo", SqlDbType.Bit).Value = Convert.ToInt32(cbActivo.Checked);
-                cmd.ExecuteNonQuery();
-                sqlConectar.Close();
+                    sqlConectar.Open();
+                    cmd.ExecuteNonQuery();
+                    sqlConectar.Close();
+                }
 
                 Response.Redirect("Categorias.aspx");
             }
+        }
+
+        protected void btnAñadir_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtCategoria.Text))
+            {
+                Response.Write("<script>alert('No se pueden guardar datos vacíos.');</script>");
+                return;
+            }
+
+            using (SqlCommand cmd = new SqlCommand("SP_InsertarCategoria", sqlConectar))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@Nombre", SqlDbType.VarChar, 100).Value = txtCategoria.Text;
+
+                sqlConectar.Open();
+                cmd.ExecuteNonQuery();
+                sqlConectar.Close();
+            }
+
+            Response.Redirect("Categorias.aspx");
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Categorias.aspx");
         }
     }
 }
