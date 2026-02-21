@@ -22,7 +22,7 @@ namespace MiniAppCRUD
             }
         }
 
-        void CargarTabla()
+        void CargarTabla(string filtro = "")
         {
             SqlCommand cmd = new SqlCommand("SP_CargarCategorias", sqlConectar);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -31,6 +31,40 @@ namespace MiniAppCRUD
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
+
+            // Aplicar filtro si existe
+            if (!string.IsNullOrWhiteSpace(filtro))
+            {
+                string termino = filtro.Trim().ToLower();
+                string expresion = "";
+
+                // ¿Es un número? → buscar por IdCategoria
+                if (int.TryParse(termino, out int id))
+                {
+                    expresion = $"IdCategoria = {id}";
+                }
+                // ¿Es booleano? → buscar por Activo
+                else if (termino == "true" || termino == "activo" || termino == "si")
+                {
+                    expresion = "Activo = true";
+                }
+                else if (termino == "false" || termino == "inactivo" || termino == "no")
+                {
+                    expresion = "Activo = false";
+                }
+                // Si no, buscar por Nombre
+                else
+                {
+                    expresion = $"Nombre LIKE '%{termino}%'";
+                }
+
+                DataRow[] filas = dt.Select(expresion);
+                DataTable dtFiltrado = dt.Clone(); // misma estructura, sin datos
+                foreach (DataRow fila in filas)
+                    dtFiltrado.ImportRow(fila);
+
+                dt = dtFiltrado;
+            }
 
             gvCategorias.DataSource = dt;
             gvCategorias.DataBind();
@@ -71,14 +105,13 @@ namespace MiniAppCRUD
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtCategoria.Text))
-            {
-                Response.Write("<script>alert('Escribe qu');</script>");
-            }
-            else
-            {
-                
-            }
+            CargarTabla(txtCategoria.Text);
+        }
+
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtCategoria.Text = "";
+            CargarTabla();
         }
     }
 }

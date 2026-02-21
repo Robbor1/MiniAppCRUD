@@ -18,6 +18,7 @@
             <asp:DropDownList ID="dropdownCategoria" runat="server"></asp:DropDownList>
 
             <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
+            <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" OnClick="btnLimpiar_Click" />
             <asp:Button ID="btnGuardar" runat="server" Text="Añadir" OnClick="btnGuardar_Click" />
 
 
@@ -27,9 +28,13 @@
                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                     <asp:BoundField DataField="Precio" HeaderText="Precio" />
                     <asp:BoundField DataField="Stock" HeaderText="Stock" />
-                    <asp:BoundField DataField="IdCategoria" HeaderText="IdCategoria" />
+                    <asp:BoundField DataField="NombreCategoria" HeaderText="Categoria" />
                     <asp:BoundField DataField="FechaRegistro" HeaderText="FechaRegistro" />
-                    <asp:BoundField DataField="Activo" HeaderText="Activo" />
+                    <asp:TemplateField HeaderText="Estatus">
+                        <ItemTemplate>
+                            <%# Convert.ToBoolean(Eval("Activo")) ? "Activo" : "Inactivo" %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Acciones">
                         <ItemTemplate>

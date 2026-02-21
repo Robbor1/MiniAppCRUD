@@ -9,13 +9,18 @@
             <asp:TextBox ID="txtCategoria" runat="server" placeholder="Ej: maquinaria"></asp:TextBox>
 
             <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
+            <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" OnClick="btnLimpiar_Click" />
             <asp:Button ID="btnGuardar" runat="server" Text="Añadir" OnClick="btnGuardar_Click" />
 
             <asp:GridView ID="gvCategorias" runat="server" AutoGenerateColumns="false" OnRowCommand="gvCategorias_RowCommand">
                 <Columns>
                     <asp:BoundField DataField="IdCategoria" HeaderText="ID" />
                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-                    <asp:BoundField DataField="Activo" HeaderText="Activo" />
+                    <asp:TemplateField HeaderText="Estatus">
+                        <ItemTemplate>
+                            <%# Convert.ToBoolean(Eval("Activo")) ? "Activo" : "Inactivo" %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:TemplateField HeaderText="Acciones">
                         <ItemTemplate>
                             <asp:Button ID="btnActualizar" runat="server" Text="Editar" CommandName="Actualizar" CommandArgument='<%# Eval("IdCategoria") %>' />

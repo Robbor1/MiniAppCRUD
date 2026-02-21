@@ -39,7 +39,7 @@ namespace MiniAppCRUD
             dropdownCategoria.Items.Insert(0, new ListItem("-- Selecciona una categoría --", ""));
         }
 
-        void CargarTabla()
+        void CargarTabla(string filtro = "", string campo = "")
         {
             SqlCommand cmd = new SqlCommand("SP_CargarProductos", sqlConectar);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -49,7 +49,48 @@ namespace MiniAppCRUD
             DataTable dt = new DataTable();
             da.Fill(dt);
 
-            dt.Columns.Add("NombreCategoria", typeof(string));
+            if (!string.IsNullOrWhiteSpace(filtro) && !string.IsNullOrWhiteSpace(campo))
+            {
+                string expresion = "";
+
+                switch (campo)
+                {
+                    case "Nombre":
+                        string termino = filtro.ToLower();
+                        if (termino == "activo" || termino == "true")
+                            expresion = "Activo = true";
+                        else if (termino == "inactivo" || termino == "false")
+                            expresion = "Activo = false";
+                        else
+                            expresion = $"Nombre LIKE '%{filtro}%'";
+                        break;
+                    case "Precio":
+                        if (decimal.TryParse(filtro, out decimal precio))
+                            expresion = $"Precio = {precio.ToString(System.Globalization.CultureInfo.InvariantCulture)}";
+                        break;
+                    case "Stock":
+                        if (int.TryParse(filtro, out int stock))
+                            expresion = $"Stock = {stock}";
+                        break;
+                    case "Activo":
+                        string t = filtro.ToLower();
+                        bool esActivo = t == "true" || t == "activo";
+                        expresion = $"Activo = {esActivo.ToString().ToLower()}";
+                        break;
+                    case "NombreCategoria":
+                        expresion = $"NombreCategoria = '{filtro}'";
+                        break;
+                }
+
+                if (!string.IsNullOrEmpty(expresion))
+                {
+                    DataRow[] filas = dt.Select(expresion);
+                    DataTable dtFiltrado = dt.Clone();
+                    foreach (DataRow fila in filas)
+                        dtFiltrado.ImportRow(fila);
+                    dt = dtFiltrado;
+                }
+            }
 
             gvProductos.DataSource = dt;
             gvProductos.DataBind();
@@ -89,7 +130,31 @@ namespace MiniAppCRUD
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                CargarTabla(txtNombre.Text, "Nombre");
+            } 
+            else if (!string.IsNullOrWhiteSpace(txtPrecio.Text))
+            {
+                CargarTabla(txtPrecio.Text, "Precio");
+            }
+            else if (!string.IsNullOrWhiteSpace(txtStock.Text))
+            {
+                CargarTabla(txtStock.Text, "Stock");
+            }
+            else if (!string.IsNullOrWhiteSpace(dropdownCategoria.SelectedValue))
+            {
+                CargarTabla(dropdownCategoria.SelectedItem.Text, "NombreCategoria");
+            }
+        }
 
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtNombre.Text = "";
+            txtPrecio.Text = "";
+            txtStock.Text = "";
+            dropdownCategoria.SelectedIndex = 0;
+            CargarTabla();
         }
     }
 }
