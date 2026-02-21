@@ -71,7 +71,14 @@ namespace MiniAppCRUD
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-
+            if (string.IsNullOrWhiteSpace(txtCategoria.Text))
+            {
+                Response.Write("<script>alert('Escribe qu');</script>");
+            }
+            else
+            {
+                
+            }
         }
     }
 }
