@@ -15,7 +15,6 @@
 
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
 </head>
 <body>
     <form runat="server">
@@ -41,8 +40,7 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" runat="server" href="~/">Exploraciones Mineras del Desierto</a>
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
@@ -51,6 +49,26 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Categorias">Categorias</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Productos">Productos</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Reportes">Reportes</a></li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="userDropdown"
+                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <asp:Label ID="lblUsuarioNav" runat="server" Text=""></asp:Label>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <span class="dropdown-item disabled">
+                                        <asp:Label ID="lblRolNav" runat="server" Text=""></asp:Label>
+                                    </span>
+                                </li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li>
+                                    <asp:Button ID="btnCerrarSesion" runat="server" Text="Cerrar Sesión"
+                                        CssClass="dropdown-item btn btn-link" OnClick="btnCerrarSesion_Click" />
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>

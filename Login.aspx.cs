@@ -28,6 +28,8 @@ namespace MiniAppCRUD
 
             if(dr.Read())
             {
+                Session["Usuario"] = dr["Usuario"].ToString();
+                Session["Permisos"] = dr["Permisos"].ToString();
                 Response.Redirect("Default.aspx");
             }
             else

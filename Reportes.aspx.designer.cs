@@ -51,6 +51,24 @@ namespace MiniAppCRUD
         protected global::System.Web.UI.WebControls.Label lblTotal1;
 
         /// <summary>
+        /// Control btnExcel1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnExcel1;
+
+        /// <summary>
+        /// Control btnPdf1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPdf1;
+
+        /// <summary>
         /// Control txtStockLimite.
         /// </summary>
         /// <remarks>
@@ -96,6 +114,24 @@ namespace MiniAppCRUD
         protected global::System.Web.UI.WebControls.Label lblTotal2;
 
         /// <summary>
+        /// Control btnExcel2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnExcel2;
+
+        /// <summary>
+        /// Control btnPdf2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPdf2;
+
+        /// <summary>
         /// Control btnReporte3.
         /// </summary>
         /// <remarks>
@@ -130,5 +166,23 @@ namespace MiniAppCRUD
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTotal3;
+
+        /// <summary>
+        /// Control btnExcel3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnExcel3;
+
+        /// <summary>
+        /// Control btnPdf3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPdf3;
     }
 }

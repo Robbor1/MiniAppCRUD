@@ -17,7 +17,10 @@
             </Columns>
         </asp:GridView>
         <asp:Label ID="lblTotal1" runat="server" Visible="false" Style="display:block; font-weight:bold;"></asp:Label>
-        <br />
+
+        <asp:Button ID="btnExcel1" runat="server" Text="Exportar Excel" OnClick="btnExcel1_Click" Visible="false" />
+        <asp:Button ID="btnPdf1" runat="server" Text="Exportar PDF" OnClick="btnPdf1_Click" Visible="false" />
+        
 
         <!-- REPORTE 2 -->
         <h3>Productos con Stock Bajo</h3>
@@ -34,7 +37,10 @@
             </Columns>
         </asp:GridView>
         <asp:Label ID="lblTotal2" runat="server" Visible="false" Style="display:block; font-weight:bold;"></asp:Label>
-        <br />
+        
+        <asp:Button ID="btnExcel2" runat="server" Text="Exportar Excel" OnClick="btnExcel2_Click" Visible="false" />
+        <asp:Button ID="btnPdf2" runat="server" Text="Exportar PDF" OnClick="btnPdf2_Click" Visible="false" />
+
 
         <!-- REPORTE 3 -->
         <h3>Productos Inactivos</h3>
@@ -49,6 +55,9 @@
             </Columns>
         </asp:GridView>
         <asp:Label ID="lblTotal3" runat="server" Visible="false" Style="display:block; font-weight:bold;"></asp:Label>
+
+        <asp:Button ID="btnExcel3" runat="server" Text="Exportar Excel" OnClick="btnExcel3_Click" Visible="false" />
+        <asp:Button ID="btnPdf3" runat="server" Text="Exportar PDF" OnClick="btnPdf3_Click" Visible="false" />
 
     </main>
 </asp:Content>
