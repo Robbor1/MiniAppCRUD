@@ -113,5 +113,11 @@ namespace MiniAppCRUD
             txtCategoria.Text = "";
             CargarTabla();
         }
+
+        protected void gvCategorias_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvCategorias.PageIndex = e.NewPageIndex;
+            CargarTabla();
+        }
     }
 }

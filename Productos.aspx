@@ -22,7 +22,8 @@
             <asp:Button ID="btnGuardar" runat="server" Text="Añadir" OnClick="btnGuardar_Click" />
 
 
-            <asp:GridView ID="gvProductos" runat="server" AutoGenerateColumns="false" OnRowCommand="gvProductos_RowCommand">
+            <asp:GridView ID="gvProductos" runat="server" AutoGenerateColumns="false" OnRowCommand="gvProductos_RowCommand" 
+                AllowPaging="true" PageSize="5" OnPageIndexChanging="gvProductos_PageIndexChanging">
                 <Columns>
                     <asp:BoundField DataField="IdProducto" HeaderText="ID" />
                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" />

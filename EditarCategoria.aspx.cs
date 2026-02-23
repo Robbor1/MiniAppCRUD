@@ -66,6 +66,12 @@ namespace MiniAppCRUD
             if (string.IsNullOrWhiteSpace(txtCategoria.Text))
             {
                 Response.Write("<script>alert('No se pueden guardar datos vacíos.');</script>");
+                return;
+            }
+            else if (txtCategoria.Text.Trim().Length > 100)
+            {
+                Response.Write("<script>alert('El nombre no puede tener más de 100 caracteres.');</script>");
+                return;
             }
             else
             {
@@ -94,18 +100,26 @@ namespace MiniAppCRUD
                 Response.Write("<script>alert('No se pueden guardar datos vacíos.');</script>");
                 return;
             }
-
-            using (SqlCommand cmd = new SqlCommand("SP_InsertarCategoria", sqlConectar))
+            else if (txtCategoria.Text.Trim().Length > 100)
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@Nombre", SqlDbType.VarChar, 100).Value = txtCategoria.Text;
-
-                sqlConectar.Open();
-                cmd.ExecuteNonQuery();
-                sqlConectar.Close();
+                Response.Write("<script>alert('El nombre no puede tener más de 100 caracteres.');</script>");
+                return;
             }
+            else
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_InsertarCategoria", sqlConectar))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@Nombre", SqlDbType.VarChar, 100).Value = txtCategoria.Text;
 
-            Response.Redirect("Categorias.aspx");
+                    sqlConectar.Open();
+                    cmd.ExecuteNonQuery();
+                    sqlConectar.Close();
+                }
+
+                Response.Redirect("Categorias.aspx");
+            }
+            
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)

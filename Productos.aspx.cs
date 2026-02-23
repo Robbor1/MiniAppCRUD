@@ -156,5 +156,14 @@ namespace MiniAppCRUD
             dropdownCategoria.SelectedIndex = 0;
             CargarTabla();
         }
+
+
+        protected void gvProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvProductos.PageIndex = e.NewPageIndex;
+            CargarTabla();
+        }
+
+
     }
 }

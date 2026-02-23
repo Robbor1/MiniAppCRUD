@@ -98,10 +98,22 @@ namespace MiniAppCRUD
                 string.IsNullOrEmpty(dropdownCategoria.Text))
             {
                 Response.Write("<script>alert('No se pueden guardar datos vacíos.');</script>");
+                return;
             }
             else if (dropdownCategoria.SelectedIndex == 0)
             {
                 Response.Write("<script>alert('Selecciona una categoría.');</script>");
+                return;
+            }
+            else if (!decimal.TryParse(txtPrecio.Text, out decimal precio) || precio <= 0)
+            {
+                Response.Write("<script>alert('El precio debe ser un número válido y mayor a 0.');</script>");
+                return;
+            }
+            else if (!int.TryParse(txtStock.Text, out int stock) || stock < 0)
+            {
+                Response.Write("<script>alert('El stock debe ser un número entero válido y no negativo.');</script>");
+                return;
             }
             else
             {
@@ -134,10 +146,21 @@ namespace MiniAppCRUD
                 string.IsNullOrWhiteSpace(txtStock.Text))
             {
                 Response.Write("<script>alert('No se pueden guardar datos vacíos.');</script>");
+                return;
             }
             else if (dropdownCategoria.SelectedIndex == 0)
             {
                 Response.Write("<script>alert('Selecciona una categoría.');</script>");
+                return;
+            }
+            else if (!decimal.TryParse(txtPrecio.Text, out decimal precio) || precio <= 0)
+            {
+                Response.Write("<script>alert('El precio debe ser un número válido y mayor a 0.');</script>");
+                return;
+            }
+            else if (!int.TryParse(txtStock.Text, out int stock) || stock < 0)
+            {
+                Response.Write("<script>alert('El stock debe ser un número entero válido y no negativo.');</script>");
                 return;
             }
             else
