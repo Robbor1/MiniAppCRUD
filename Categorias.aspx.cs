@@ -32,18 +32,18 @@ namespace MiniAppCRUD
             DataTable dt = new DataTable();
             da.Fill(dt);
 
-            // Aplicar filtro si existe
+            
             if (!string.IsNullOrWhiteSpace(filtro))
             {
                 string termino = filtro.Trim().ToLower();
                 string expresion = "";
 
-                // ¿Es un número? → buscar por IdCategoria
+                
                 if (int.TryParse(termino, out int id))
                 {
                     expresion = $"IdCategoria = {id}";
                 }
-                // ¿Es booleano? → buscar por Activo
+                
                 else if (termino == "true" || termino == "activo" || termino == "si")
                 {
                     expresion = "Activo = true";
@@ -52,14 +52,14 @@ namespace MiniAppCRUD
                 {
                     expresion = "Activo = false";
                 }
-                // Si no, buscar por Nombre
+                
                 else
                 {
                     expresion = $"Nombre LIKE '%{termino}%'";
                 }
 
                 DataRow[] filas = dt.Select(expresion);
-                DataTable dtFiltrado = dt.Clone(); // misma estructura, sin datos
+                DataTable dtFiltrado = dt.Clone(); 
                 foreach (DataRow fila in filas)
                     dtFiltrado.ImportRow(fila);
 
