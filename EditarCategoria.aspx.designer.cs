@@ -24,15 +24,6 @@ namespace MiniAppCRUD
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control lblId.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblId;
-
-        /// <summary>
         /// Control txtId.
         /// </summary>
         /// <remarks>
@@ -42,15 +33,6 @@ namespace MiniAppCRUD
         protected global::System.Web.UI.WebControls.TextBox txtId;
 
         /// <summary>
-        /// Control lblCategoria.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCategoria;
-
-        /// <summary>
         /// Control txtCategoria.
         /// </summary>
         /// <remarks>
@@ -58,15 +40,6 @@ namespace MiniAppCRUD
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCategoria;
-
-        /// <summary>
-        /// Control lblActivo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblActivo;
 
         /// <summary>
         /// Control cbActivo.

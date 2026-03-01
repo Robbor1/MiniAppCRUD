@@ -147,6 +147,7 @@
     <Content Include="Content\Styles.css" />
     <Content Include="EditarCategoria.aspx" />
     <Content Include="EditarProducto.aspx" />
+    <Content Include="Images\logoEMD.png" />
     <Content Include="Productos.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />

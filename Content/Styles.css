@@ -1,10 +1,362 @@
-﻿html, body {
-    height: 100%;
+﻿/* ===== VARIABLES / PALETA EXPLORACIONES MINERAS ===== */
+:root {
+    --rojo: #c0392b;
+    --naranja: #e67e22;
+    --dorado: #f39c12;
+    --tierra: #7d5a3c;
+    --oscuro: #1a1a1a;
+    --gris-oscuro: #2c2c2c;
+    --gris-medio: #555555;
+    --gris-claro: #f4f4f4;
+    --blanco: #ffffff;
 }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    background-color: var(--oscuro) !important;
+    border-bottom: 3px solid var(--dorado);
+    padding: 12px 0;
+}
+
+.navbar-brand {
+    color: var(--blanco) !important;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+}
+
+    .navbar-brand span {
+        color: var(--dorado);
+    }
+
+.nav-link {
+    color: #ccc !important;
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.2s;
+    padding: 6px 14px !important;
+}
+
+    .nav-link:hover {
+        color: var(--dorado) !important;
+    }
+
+.nav-usuario {
+    color: var(--blanco) !important;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+    .nav-usuario:hover {
+        background: rgba(255,255,255,0.1);
+        color: var(--dorado) !important;
+    }
+
+.nav-item.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    background: var(--gris-oscuro);
+    border: 1px solid var(--tierra);
+    border-radius: 10px;
+    padding: 8px 0;
+    min-width: 200px;
+    right: 0;
+    left: auto;
+}
+
+.dropdown-item {
+    color: #ccc !important;
+    font-size: 14px;
+    padding: 10px 16px;
+    transition: background 0.2s;
+}
+
+    .dropdown-item:hover {
+        background: var(--tierra);
+        color: var(--blanco) !important;
+    }
+
+.dropdown-divider {
+    border-color: #444;
+}
+
+.dropdown-item.btn.btn-link {
+    text-decoration: none;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    color: var(--rojo) !important;
+    font-weight: 600;
+}
+
+    .dropdown-item.btn.btn-link:hover {
+        background: var(--rojo);
+        color: var(--blanco) !important;
+    }
+
+/* ===== CONTENIDO GENERAL ===== */
+.container.body-content {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--oscuro);
+    margin-bottom: 20px;
+    border-left: 4px solid var(--dorado);
+    padding-left: 12px;
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gris-oscuro);
+    margin: 25px 0 10px 0;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--gris-claro);
+}
+
+footer p {
+    color: var(--gris-medio);
+    font-size: 13px;
+}
+
+/* ===== PÁGINAS INTERNAS ===== */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+    .page-header h2 {
+        margin-bottom: 4px;
+        border-left: 4px solid var(--dorado);
+        padding-left: 12px;
+    }
+
+.page-subtitle {
+    color: var(--gris-medio);
+    font-size: 13px;
+    padding-left: 16px;
+    margin: 0;
+}
+
+/* ===== TOOLBAR ===== */
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--blanco);
+    padding: 16px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    border: 1px solid #f0f0f0;
+}
+
+.toolbar-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.toolbar-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gris-oscuro);
+    white-space: nowrap;
+}
+
+.toolbar-input {
+    padding: 9px 14px !important;
+    border: 1.5px solid #e0e0e0 !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    outline: none !important;
+    transition: border-color 0.2s !important;
+    min-width: 200px;
+}
+
+    .toolbar-input:focus {
+        border-color: var(--dorado) !important;
+    }
+
+.toolbar-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-toolbar-buscar {
+    padding: 9px 18px !important;
+    background: var(--dorado) !important;
+    color: var(--blanco) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: background 0.2s !important;
+}
+
+    .btn-toolbar-buscar:hover {
+        background: var(--naranja) !important;
+    }
+
+.btn-toolbar-limpiar {
+    padding: 9px 18px !important;
+    background: var(--gris-claro) !important;
+    color: var(--gris-oscuro) !important;
+    border: 1px solid #ddd !important;
+    border-radius: 8px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+}
+
+.btn-toolbar-añadir {
+    padding: 9px 18px !important;
+    background: var(--oscuro) !important;
+    color: var(--blanco) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: background 0.2s !important;
+}
+
+    .btn-toolbar-añadir:hover {
+        background: #333 !important;
+    }
+
+/* ===== TABLA GRID ===== */
+.tabla-contenedor {
+    background: var(--blanco);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    overflow: hidden;
+    border: 1px solid #f0f0f0;
+}
+
+.tabla-grid {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+}
+
+    .tabla-grid th {
+        background: var(--oscuro) !important;
+        color: var(--dorado) !important;
+        padding: 14px 18px !important;
+        font-size: 12px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.8px !important;
+        border: none !important;
+    }
+
+    .tabla-grid td {
+        padding: 13px 18px !important;
+        font-size: 14px !important;
+        color: var(--gris-oscuro) !important;
+        border-bottom: 1px solid #f5f5f5 !important;
+        border-left: none !important;
+        border-right: none !important;
+    }
+
+    .tabla-grid tr:last-child td {
+        border-bottom: none !important;
+    }
+
+    .tabla-grid tr:hover td {
+        background: #fffbf2 !important;
+    }
+
+.badge-activo {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-inactivo {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #fce4e4;
+    color: var(--rojo);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.btn-editar-tabla {
+    padding: 5px 14px !important;
+    background: var(--dorado) !important;
+    color: var(--blanco) !important;
+    border: none !important;
+    border-radius: 6px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    margin-right: 5px !important;
+    transition: background 0.2s !important;
+}
+
+    .btn-editar-tabla:hover {
+        background: var(--naranja) !important;
+    }
+
+.btn-eliminar-tabla {
+    padding: 5px 14px !important;
+    background: #fce4e4 !important;
+    color: var(--rojo) !important;
+    border: 1px solid #f5c0c0 !important;
+    border-radius: 6px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: background 0.2s, color 0.2s !important;
+}
+
+    .btn-eliminar-tabla:hover {
+        background: var(--rojo) !important;
+        color: var(--blanco) !important;
+    }
 
 /* ===== LOGIN ===== */
 .login-body {
-    background: #f5f5f5;
+    background: var(--gris-claro);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -12,20 +364,23 @@
 }
 
 .login-card {
-    background: #ffffff;
-    border-radius: 20px;
+    background: var(--blanco);
+    border-radius: 16px;
     padding: 50px 45px;
     width: 100%;
     max-width: 420px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.10);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+    border-top: 4px solid var(--dorado);
 }
 
     .login-card h2 {
         text-align: center;
-        font-size: 28px;
+        font-size: 26px;
         font-weight: 700;
-        color: #111;
-        margin-bottom: 35px;
+        color: var(--oscuro);
+        margin-bottom: 30px;
+        border: none;
+        padding: 0;
     }
 
 .form-group {
@@ -35,55 +390,310 @@
     .form-group label {
         display: block;
         font-size: 14px;
-        font-weight: 500;
-        color: #333;
+        font-weight: 600;
+        color: var(--gris-oscuro);
         margin-bottom: 8px;
     }
 
-    .form-group input {
+    .form-group input,
+    .form-group input[type="text"],
+    .form-group input[type="password"] {
         width: 100%;
-        padding: 14px 18px;
-        border: 1.5px solid #e0e0e0;
-        border-radius: 12px;
+        display: block;
+        padding: 13px 16px;
+        border: 1.5px solid #ddd;
+        border-radius: 10px;
         font-size: 15px;
-        color: #111;
+        color: var(--oscuro);
         outline: none;
         transition: border-color 0.2s;
+        box-sizing: border-box;
     }
 
         .form-group input:focus {
-            border-color: #f5a623;
+            border-color: var(--dorado);
         }
 
 .btn-login {
     width: 100%;
-    padding: 15px;
-    background: #f5a623;
-    color: #fff;
+    padding: 14px;
+    background: var(--dorado);
+    color: var(--blanco);
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
     font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s;
+    letter-spacing: 0.5px;
+}
+
+    .btn-login:hover {
+        background: var(--naranja);
+    }
+
+/* ===== REPORTES ===== */
+.reporte-seccion {
+    background: var(--blanco);
+    border-radius: 12px;
+    padding: 20px 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    border-left: 4px solid var(--dorado);
+}
+
+.reporte-fecha {
+    color: var(--gris-medio);
+    font-size: 12px;
+    margin: 6px 0;
+    display: block;
+}
+
+.reporte-total {
+    font-weight: 700;
+    color: var(--oscuro);
+    font-size: 14px;
+    margin-top: 10px;
+    display: block;
+}
+
+.btn-generar {
+    background: var(--dorado);
+    color: var(--blanco);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
-    margin-top: 10px;
     transition: background 0.2s;
 }
 
-.btn-login:hover {
-    background: #e09510;
+    .btn-generar:hover {
+        background: var(--naranja);
+    }
+
+.btn-excel {
+    background: #1d6f42;
+    color: var(--blanco);
+    border: none;
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    margin-right: 6px;
 }
 
-.form-group input,
-.form-group input[type="text"],
-.form-group input[type="password"] {
+    .btn-excel:hover {
+        background: #155230;
+    }
+
+.btn-pdf {
+    background: var(--rojo);
+    color: var(--blanco);
+    border: none;
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+    .btn-pdf:hover {
+        background: #a93226;
+    }
+
+/* ===== EDITAR FORMULARIOS ===== */
+.editar-body {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #3d2b1f 100%) !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 30px 20px;
+}
+
+.editar-card {
+    background: var(--blanco);
+    border-radius: 20px;
+    padding: 40px 45px;
     width: 100%;
-    display: block;
-    padding: 14px 18px;
-    border: 1.5px solid #e0e0e0;
+    max-width: 480px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+    border-top: 4px solid var(--dorado);
+}
+
+.editar-card-wide {
+    max-width: 700px;
+}
+
+.editar-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--gris-claro);
+}
+
+.editar-header-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--dorado), var(--naranja));
     border-radius: 12px;
-    font-size: 15px;
-    color: #111;
-    outline: none;
-    transition: border-color 0.2s;
-    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.editar-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--oscuro);
+    margin: 0 0 4px 0;
+    border: none;
+    padding: 0;
+}
+
+.editar-header p {
+    font-size: 13px;
+    color: var(--gris-medio);
+    margin: 0;
+}
+
+.editar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.editar-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+    .editar-field label {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--gris-oscuro);
+        margin-bottom: 7px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .editar-field input[type="text"],
+    .editar-field input[type="number"],
+    .editar-select {
+        padding: 11px 14px;
+        border: 1.5px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 14px;
+        color: var(--oscuro);
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        background: #fafafa;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+        .editar-field input[type="text"]:focus,
+        .editar-field input[type="number"]:focus,
+        .editar-select:focus {
+            border-color: var(--dorado);
+            box-shadow: 0 0 0 3px rgba(243,156,18,0.15);
+            background: var(--blanco);
+        }
+
+.input-readonly {
+    background: #f0f0f0 !important;
+    color: #999 !important;
+    cursor: not-allowed;
+}
+
+.editar-check {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+    .editar-check label {
+        margin: 0;
+        text-transform: none;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--gris-oscuro);
+        letter-spacing: 0;
+    }
+
+.editar-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-editar-guardar {
+    flex: 1;
+    padding: 12px;
+    background: linear-gradient(135deg, var(--dorado), var(--naranja));
+    color: var(--blanco);
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    letter-spacing: 0.5px;
+}
+
+    .btn-editar-guardar:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+    }
+
+.btn-editar-actualizar {
+    flex: 1;
+    padding: 12px;
+    background: var(--oscuro);
+    color: var(--blanco);
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+    .btn-editar-actualizar:hover {
+        background: #333;
+        transform: translateY(-1px);
+    }
+
+.btn-editar-cancelar {
+    padding: 12px 20px;
+    background: transparent;
+    color: var(--gris-medio);
+    border: 1.5px solid #ddd;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+    .btn-editar-cancelar:hover {
+        border-color: var(--rojo);
+        color: var(--rojo);
+    }
+
+.editar-calendar {
+    width: 100% !important;
+    font-size: 12px;
+    border-radius: 10px;
+    overflow: hidden;
 }
